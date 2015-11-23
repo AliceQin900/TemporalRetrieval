@@ -26,29 +26,27 @@ def parseResultLine(resultLine):
 def getTopNDocIds(resultFile, topN):
     topNDocIds = {}
     handle = open(resultFile)
-    count = 0
     for line in handle:
         result = parseResultLine(line)
         docId = result.docId
-        if count < topN:
+        rank = result.rank
+        if rank <= topN:
             topNDocIds[docId] = 1
-            count += 1
     return topNDocIds
 
 
 def getTopNResults(resultFile, topN):
     topNResults = {}
     handle = open(resultFile)
-    count = 0
     for line in handle:
         result = parseResultLine(line)
         qid = result.queryId
         docId = result.docId
+        rank = result.rank
         score = result.score
-        if count < topN:
+        if rank <= topN:
             topNResults.setdefault(qid, {})
             topNResults[qid][docId] = score
-            count += 1
     return topNResults
 
 
