@@ -4,7 +4,6 @@ encoding//Analysis/TermBurstAnalysis.py=utf-8
 encoding//Common/GetDocEpoch.py=utf-8
 encoding//Common/GetQuery.py=utf-8
 encoding//Common/GetQueryEpoch.py=utf-8
-encoding//Common/GetRetrievalResults.py=utf-8
 encoding//Common/ParseQrels.py=utf-8
 encoding//Common/ParseRelevantCountByDay.py=utf-8
 encoding//Common/PickleData.py=utf-8
