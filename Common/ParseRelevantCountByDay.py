@@ -39,6 +39,18 @@ def getMaxDay(relevantCountByDayFile):
     return maxDay
 
 
+
+def getMaxDay1(relevantCountByDay):
+    dayDict = {}
+    for qid in relevantCountByDay.keys():
+        countDict = relevantCountByDay[qid]
+        for day in countDict.keys():
+            if not dayDict.has_key(day):
+                dayDict[day] = 1
+    dayList = dayDict.keys()
+    maxDay = max(dayList)
+    return maxDay
+
 if __name__=='__main__':
     year = '2014'
     relevantCountByDayFile = '../data/relevantCountByDay/relevantCountByDay_' + year + '.txt'
