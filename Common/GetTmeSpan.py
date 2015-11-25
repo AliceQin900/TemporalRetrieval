@@ -13,3 +13,10 @@ def getTimeSpan(queryEpoch, tweetEpoch ):
         return timeSpan
     else:
         print 'Error: tweetEpoch > queryEpoch'
+        
+
+
+        
+        
+        
+        
