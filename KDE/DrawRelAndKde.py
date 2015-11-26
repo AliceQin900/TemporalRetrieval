@@ -40,15 +40,15 @@ def drawHistLine(x, x1, y1, maxDay, qid):
 
 
 if __name__=='__main__':
-    year = '2011'
+    year = '2012'
     topN = 100
     maxDay = 16   # 2011,2012: 16  ; 2013, 2014: 58
     daysList = [i for i in range(0, maxDay + 1)]
     
     queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
-    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch_'+ year + '.pkl'
+    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch\\tweetsEpoch_'+ year + '.pkl'
     qrelFile = 'E:\\eclipse\\QueryExpansion\\data\\qrels\\' + 'qrels.microblog' + year + '_new.txt'
-    kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\kde_prf' + str(topN) +'_' + year + '.pkl' 
+    kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\' + year + '\\kde_prf' + str(topN) +'_' + year + '.pkl' 
     
     kdeDict = getPickleData(kdePrfTimeFile)
     queriesEpoch = getQueriesEpoch(queryTimeFile, year)

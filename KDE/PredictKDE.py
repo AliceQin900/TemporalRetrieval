@@ -42,22 +42,23 @@ def predictResultsProbDens(retrievalResults, queriesEpoch, tweetsEpoch, kdeDict)
 
 
 if __name__=='__main__':
-    year = '2011'
-    topN = 100
+    year = '2012'
+    topNList = [i for i in range(50, 501, 50)]
     
-    resultFile = 'E:\\eclipse\\QueryExpansion\\data\\BM25\\BM25_' + year + '.txt'
-    queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
-    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch_'+ year + '.pkl'
-    kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\kde_prf' + str(topN) +'_' + year + '.pkl'
-    kdeBasedRankFile = '../data/rank_KDE/rank_KDE' + str(topN) + '_' +  year + '.txt'
-    tag = 'PRF_Time_KDE'
-    
-    kdeDict = getPickleData(kdePrfTimeFile)
-    retrievalResults = getResults(resultFile)
-    queriesEpoch = getQueriesEpoch(queryTimeFile, year)
-    tweetsEpoch = getPickleData(tweetsEpochFile)
-    probDens = predictResultsProbDens(retrievalResults, queriesEpoch, tweetsEpoch, kdeDict)
-    writeResults(probDens, kdeBasedRankFile, tag)
+    for topN in topNList:
+        resultFile = 'E:\\eclipse\\QueryExpansion\\data\\BM25\\BM25_' + year + '.txt'
+        queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
+        tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch\\tweetsEpoch_'+ year + '.pkl'
+        kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\' + year + '\\kde_prf' + str(topN) +'_' + year + '.pkl'
+        kdeBasedRankFile = '../data/rank_KDE/' + year + '/rank_KDE' + str(topN) + '_' +  year + '.txt'
+        tag = 'PRF_Time_KDE'
+        
+        kdeDict = getPickleData(kdePrfTimeFile)
+        retrievalResults = getResults(resultFile)
+        queriesEpoch = getQueriesEpoch(queryTimeFile, year)
+        tweetsEpoch = getPickleData(tweetsEpochFile)
+        probDens = predictResultsProbDens(retrievalResults, queriesEpoch, tweetsEpoch, kdeDict)
+        writeResults(probDens, kdeBasedRankFile, tag)
     
     
     

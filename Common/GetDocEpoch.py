@@ -38,8 +38,8 @@ def getTweetsEpoch(year):
 
 
 if __name__=='__main__':
-    year = '2011'
-    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch_'+ year + '.pkl'
+    year = '2012'
+    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch\tweetsEpoch_'+ year + '.pkl'
     
     tweetsEpoch = getTweetsEpoch(year)
     print len(tweetsEpoch.keys())

@@ -51,7 +51,7 @@ def getResultsTimeSpan(topNResults, tweetsEpoch, queriesEpoch):
 def gaussianKDE(trainData):
     # Gaussian KDE
     grid = GridSearchCV(KernelDensity(kernel='gaussian'),
-                    {'bandwidth': np.linspace(0.01, 1.0, 30)},
+                    {'bandwidth': np.linspace(0.0, 1.0, 20)},
                     cv = 5)   # 5 cross-validation
     trainData = np.array(trainData)
     grid.fit(trainData[:, None])
@@ -91,22 +91,23 @@ def prfTimeKDE(topNResults, queriesEpoch, tweetsEpoch):
 
 
 if __name__=='__main__' :
-    year = '2011'
-    topN = 100
-   
-    queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
-    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch_'+ year + '.pkl'
-    resultFile = 'E:\\eclipse\\QueryExpansion\\data\\BM25\\BM25_' + year + '.txt'
-    bandwidthPrfTimeFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\band_prf' + str(topN) +'_' + year + '.pkl' 
-    kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\kde_prf' + str(topN) +'_' + year + '.pkl' 
+    year = '2012'
+    topNList = [i for i in range(50, 501, 50)]
     
-    # train the kde estimator
-    topNResults = getTopNResults(resultFile, topN)
-    queriesEpoch = getQueriesEpoch(queryTimeFile, year)
-    tweetsEpoch = getPickleData(tweetsEpochFile)
-    (bandwidthDict, kdeDict) = prfTimeKDE(topNResults, queriesEpoch, tweetsEpoch)
-    writePickleData(bandwidthDict, bandwidthPrfTimeFile)
-    writePickleData(kdeDict, kdePrfTimeFile)
+    for topN in topNList:
+        queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
+        tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch\\tweetsEpoch_'+ year + '.pkl'
+        resultFile = 'E:\\eclipse\\QueryExpansion\\data\\BM25\\BM25_' + year + '.txt'
+        bandwidthPrfTimeFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\' + year + '\\band_prf' + str(topN) +'_' + year + '.pkl' 
+        kdePrfTimeFile ='E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\KDE\\' + year + '\\kde_prf' + str(topN) +'_' + year + '.pkl' 
+        
+        # train the kde estimator
+        topNResults = getTopNResults(resultFile, topN)
+        queriesEpoch = getQueriesEpoch(queryTimeFile, year)
+        tweetsEpoch = getPickleData(tweetsEpochFile)
+        (bandwidthDict, kdeDict) = prfTimeKDE(topNResults, queriesEpoch, tweetsEpoch)
+        writePickleData(bandwidthDict, bandwidthPrfTimeFile)
+        writePickleData(kdeDict, kdePrfTimeFile)
     
     
 

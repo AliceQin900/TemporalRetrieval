@@ -101,7 +101,7 @@ if __name__=='__main__':
     queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
     stopFilePath = 'E:\\eclipse\\QueryExpansion\\data\\english.stop'
     indexedFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\index\\' + 'tweet_index_' + year + '.pkl'
-    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch_'+ year + '.pkl'
+    tweetsEpochFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\tweetsEpoch\\tweetsEpoch_'+ year + '.pkl'
     qwordsDfByDayFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\qwordsDfByDay\\qwordsDfByDay_' + year + '.pkl'
     matrixFile = 'E:\\eclipse\\TemporalRetrieval\\data\\qwordsDfByDay\\qwordsDfByDay_' + year + '.txt'
     
