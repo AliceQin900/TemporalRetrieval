@@ -50,14 +50,14 @@ def getResultsTimeSpan(topNResults, tweetsEpoch, queriesEpoch):
 #===============================================================================
 def gaussianKDE(trainData):
     # Gaussian KDE
-    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
-                    {'bandwidth': np.linspace(0.0, 1.0, 20)},
-                    cv = 5)   # 5 cross-validation
     trainData = np.array(trainData)
+    grid = GridSearchCV(KernelDensity(kernel='gaussian'),
+                    {'bandwidth': np.linspace(0.01, 1.0, 30)},
+                    cv = 5)   # 5 cross-validation
     grid.fit(trainData[:, None])
     parameters =  grid.best_params_
     kde = grid.best_estimator_
-    # kde = KernelDensity(kernel='gaussian', bandwidth).fit(trainData)
+    # kde = KernelDensity(kernel='gaussian', bandwidth).fit(trainData)  no cross-validation
     return (parameters['bandwidth'], kde)
 
 def prediction(kde, testSamples):
