@@ -15,7 +15,7 @@ from Common.WriteUtils import writeResults
 
 
 #===============================================================================
-# get the time based probability density of the retrieval results
+# predict the relevant probability of the retrieval results based on KDE  
 # retrievalResults[qid] = results list
 # return probDens[qid][docId] = probDen
 #===============================================================================
