@@ -36,7 +36,7 @@ def invertedIndexing(filePath):
 
 
 if __name__=='__main__':
-    year = '2011'
+    year = '2012'
 #     filePath = 'E:\\eclipse\\QueryExpansion\\dataset\\processed\\test.txt'
     filePath = 'E:\\eclipse\\QueryExpansion\\dataset\\processed\\' + 'tweet' + year + '_processed.txt'
     indexedFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\index\\' + 'tweet_index_' + year + '.pkl'
