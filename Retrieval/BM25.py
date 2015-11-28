@@ -5,9 +5,6 @@ Created on 2015年11月27日
 @author: Administrator
 '''
 
-k1 = 0.75
-b = 0.05
-
 import math
 
 from Common.GetQuery import getProcessedQueries
@@ -73,29 +70,30 @@ def scoreBM25(queriesDict, wordsIndex, docsLength, k1, b):
         queryStr = queriesDict[qid]
         qwords = queryStr.split()
         for qword in qwords:
-            docsDict = wordsIndex[qword]
-            for docId in docsDict.keys():
-                dtf = dtfWeighting(qword, docId, wordsIndex, docsLength, avgDocsLength, k1, b)
-                idf = idfWeighting(qword, docsCount, wordsIndex)
-                s = dtf * idf
-                scores[qid].setdefault(docId, 0)
-                scores[qid][docId] += s
+            idf = idfWeighting(qword, docsCount, wordsIndex)
+            if wordsIndex.has_key(qword):
+                docsDict = wordsIndex[qword]
+                for docId in docsDict.keys():
+                    dtf = dtfWeighting(qword, docId, wordsIndex, docsLength, avgDocsLength, k1, b)
+                    s = dtf * idf
+                    scores[qid].setdefault(docId, 0)
+                    scores[qid][docId] += s
     return scores
                 
             
 
 if __name__=='__main__':
-    year = '2011'
+    year = '2012'
     topN = 1000
     tag = 'myBM25'
     k1 = 0.3
-    b = 0.05
+    b = 0.02
     
     stopFilePath = 'E:\\eclipse\\QueryExpansion\\data\\english.stop'
     indexedFile = 'E:\\eclipse\\TemporalRetrieval\\data\\pickle_data\\index\\' + 'tweet_index_' + year + '.pkl'
     queryTimeFile = 'E:\\eclipse\\QueryExpansion\\data\\QueryTime\\' + year + '.MBid_query_time.txt'
     docsFilePath = 'E:\\eclipse\\QueryExpansion\\dataset\\processed\\tweet' + year + '_processed.txt'
-    resultFilePath = '../data/rank_BM25/2011/myBM25.txt'   
+    resultFilePath = '../data/rank_BM25/' + year + '/myBM25_k'+ str(k1) + '_b' + str(b)  + '.txt'   
       
     stopWords = stopWordsGet(stopFilePath)
     queriesDict = getProcessedQueries(queryTimeFile, stopWords)
@@ -104,5 +102,8 @@ if __name__=='__main__':
     scores = scoreBM25(queriesDict, wordsIndex, docsLength, k1, b)
     topNResults = getTopNResults(scores, topN)
     writeTopNResults(topNResults, resultFilePath, tag)
+    
+    
+    
     
     

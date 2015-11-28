@@ -17,4 +17,5 @@ encoding//KDE/Predict.py=utf-8
 encoding//KDE/PrfTimeKDE.py=utf-8
 encoding//KDE/QwordTimeKDE.py=utf-8
 encoding//Retrieval/BM25.py=utf-8
+encoding//Retrieval/BM25T.py=utf-8
 encoding//Retrieval/Indexing.py=utf-8
